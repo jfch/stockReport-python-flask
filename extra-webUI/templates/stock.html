@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <style type="text/css">
+		body {
+            padding-top: 100px;
+        }
+        .form-container {
+            width: 400px;
+            margin: auto;
+        }
+		
+    </style>
+</head>
+
+<body>
+<div class="form-container">
+    <h2>Stock Profit Calculator</h2>
+    <form method="post">
+        <div class="form-group">
+            <label for="TickerSymbol">Ticker Symbol</label>
+            <input type="text" name="TickerSymbol" id="TickerSymbol" value="{{TickerSymbol}}" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="Allotment">Allotment</label>
+            <input type="text" name="Allotment" id="Allotment" value="{{allotment}}" class="form-control" />
+        </div>
+		<div class="form-group">
+            <label for="FinalSharePrice">Final Share Price</label>
+            <input type="text" name="FinalSharePrice" id="FinalSharePrice" value="{{finalSharePrice}}" class="form-control" />
+        </div>
+		<div class="form-group">
+            <label for="SellCommission">Sell Commission</label>
+            <input type="text" name="SellCommission" id="SellCommission" value="{{sellCommission}}" class="form-control" />
+        </div>
+		<div class="form-group">
+            <label for="InitialSharePrice">Initial Share Price</label>
+            <input type="text" name="InitialSharePrice" id="InitialSharePrice" value="{{initialSharePrice}}" class="form-control" />
+        </div>
+		<div class="form-group">
+            <label for="BuyCommission">Buy Commission</label>
+            <input type="text" name="BuyCommission" id="BuyCommission" value="{{buyCommission}}" class="form-control" />
+        </div>
+		<div class="form-group">
+            <label for="CapitalGainTaxRate(%)">Capital Gain Tax Rate(%)</label>
+            <input type="text" name="CapitalGainTaxRate" id="CapitalGainTaxRate" value="{{capitalGainTaxRate}}" class="form-control" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Calculate</button>
+           
+        </div>
+    </form>
+</div>
+{% if proceeds: %}
+<div class="form-container">
+    <h2>PROFIT REPORT:</h2>
+    <form>
+        <div class="form-group"><label>PROFIT REPORT:</label></div>
+        <div><label>Proceeds</label></div>
+        <div><label>${{proceeds}}</label></div>
+        <div><br></div>
+
+        <div><label>Cost</label></div>
+        <div class="form-group"><label>${{cost}}</label></div>
+
+        <div><label>Cost details: </label></div>
+        <div><label>Total Purchase Price</label></div>
+        <div><label>{{allotment}} x $ {{initialSharePrice}} = {{initialInvestment}} </label></div>
+        <div><label> Buy Commission = {{buyCommission}} </label></div>
+        <div><label> Sell Commission = {{sellCommission}}</label></div>
+        <div class="form-group"><label> Tax on Capital Gain = {{capitalGainTaxRate}}% of ${{capitalGain}} = {{cpaitalGainTax}} </label></div>
+
+        <div><label>Net Profit </label></div>
+        <div class="form-group"><label>${{netProfit}}</label></div>
+
+        <div><label>Return on Investment</label></div>
+        <div class="form-group"><label>{{returnOnInvestment}}%</label></div>
+
+        <div><label>To break even, you should have a final share price of</label></div>
+        <div class="form-group"><label>${{breakEvenSharePrice}}</label></div>
+    </form>
+</div>
+{% endif %}
+
+</body>
+</html>
